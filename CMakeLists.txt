@@ -8,8 +8,9 @@ set(SOURCES src/main.c src/myf.c src/callbacks.c)
 add_executable(${PROG} ${SOURCES})
 
 #-----------------------------------------------
-find_package( OpenCV 2 REQUIRED)
+find_package( OpenCV 2.4.13.3 EXACT)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
+target_link_libraries( ${PROG} m ${GTK_LIBRARIES} ${OpenCV_LIBS} )
 #The recommended way to find packages automatically using PkgConfig
 #See more on http://www.cmake.org/Wiki/CMake:How_To_Find_Libraries
 find_package(PkgConfig REQUIRED)  #necessary for next command to work
@@ -23,7 +24,7 @@ target_link_libraries(${PROG} ${GTK_LIBRARIES} )
 # --- add custom mtargets (and dependencies)
 add_custom_target( cpfiles
                 COMMAND cp "${PROJECT_SOURCE_DIR}/src/*.glade" "${PROJECT_BINARY_DIR}"
-                COMMAND cp "${PROJECT_SOURCE_DIR}/src/*.png" "${PROJECT_BINARY_DIR}"
+                #COMMAND cp "${PROJECT_SOURCE_DIR}/src/*.png" "${PROJECT_BINARY_DIR}"
                  )
 
 #Add dependencies

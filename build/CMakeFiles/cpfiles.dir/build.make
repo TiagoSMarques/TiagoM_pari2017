@@ -55,7 +55,6 @@ include CMakeFiles/cpfiles.dir/progress.make
 
 CMakeFiles/cpfiles:
 	cp /home/tiago/Dropbox/UA/5º\ ano/PARI/GTK-Aulas/Aula_4/TiagoM_pari2017/src/*.glade /home/tiago/Dropbox/UA/5º\ ano/PARI/GTK-Aulas/Aula_4/TiagoM_pari2017/build
-	cp /home/tiago/Dropbox/UA/5º\ ano/PARI/GTK-Aulas/Aula_4/TiagoM_pari2017/src/*.png /home/tiago/Dropbox/UA/5º\ ano/PARI/GTK-Aulas/Aula_4/TiagoM_pari2017/build
 
 cpfiles: CMakeFiles/cpfiles
 cpfiles: CMakeFiles/cpfiles.dir/build.make

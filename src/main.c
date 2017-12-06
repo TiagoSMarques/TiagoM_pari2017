@@ -18,8 +18,7 @@ int main(int argc, char *argv[])
 	   /* get main window Widget ID and connect special signals */
 	   GtkWidget *t = GTK_WIDGET(gtk_builder_get_object(builderG, "window1"));
 	   //GTK_WIDGET é uma macro que transforma o potenteiro de objeto para ponteiro widget
-	   if(t)
-	   {
+	   if(t) {
 			 g_signal_connect(G_OBJECT(t), "delete_event", G_CALLBACK(pari_delete_event), NULL);
 	   }
 
@@ -27,8 +26,15 @@ int main(int argc, char *argv[])
 	   signal(SIGINT, InterceptCTRL_C);
 
 	   /* start the event loop */
-		 p_InitTimer();
-	   gtk_main(); //não faz nada e fica à espera de eventos
+	   p_InitTimer();
 
+	   g_timeout_add(30, (GSourceFunc) pari_UpdateImageAreas, (gpointer) NULL); //30ms de update
+	   captureG=pari_StartImageAcquisition();
+
+	   gtk_main();    //não faz nada e fica à espera de eventos
+
+	   cvReleaseCapture(&captureG);     //Release capture device.
+	   cvReleaseImage(&dst_imageG);     //Release image (free pointer when no longer used)
+	   cvReleaseImage(&src_imageG);     //Release image (free pointer when no longer used).
 	   return 0;
 }

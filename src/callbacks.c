@@ -75,25 +75,25 @@ void on_drawingarea1_draw(GtkWidget *widget, cairo_t *cr, gpointer user_data) {
 	   p_RedrawFreeForm(cr);
 }
 
-void on_drawingarea1_scroll_event(GtkWidget *widget, GdkEventScroll *event, gpointer user_data)
-{
-	   switch(event->direction)
-	   {
-	   case GDK_SCROLL_UP:
-			 fontSizeFactor +=0.1;          //increase factor
-			 break;
-
-	   case GDK_SCROLL_DOWN:
-			 fontSizeFactor -=0.1;          //decrease factor
-			 break;
-
-	   case GDK_SCROLL_LEFT:
-	   case GDK_SCROLL_RIGHT:
-	   case GDK_SCROLL_SMOOTH:
-			 break;
-	   }
-	   gtk_widget_queue_draw(widget);  //force redraw the widget
-}
+// void on_drawingarea1_scroll_event(GtkWidget *widget, GdkEventScroll *event, gpointer user_data)
+// {
+// 	   switch(event->direction)
+// 	   {
+// 	   case GDK_SCROLL_UP:
+// 			 fontSizeFactor +=0.1;          //increase factor
+// 			 break;
+//
+// 	   case GDK_SCROLL_DOWN:
+// 			 fontSizeFactor -=0.1;          //decrease factor
+// 			 break;
+//
+// 	   case GDK_SCROLL_LEFT:
+// 	   case GDK_SCROLL_RIGHT:
+// 	   case GDK_SCROLL_SMOOTH:
+// 			 break;
+// 	   }
+// 	   gtk_widget_queue_draw(widget);  //force redraw the widget
+// }
 
 void on_drawingarea1_motion_notify_event(GtkWidget *widget, GdkEventMotion *event, gpointer user_data)
 {
@@ -133,4 +133,14 @@ void on_drawingarea1_key_press_event(GtkWidget *widget, GdkEventKey *event, gpoi
 			 ffG.count=0;
 			 gtk_widget_queue_draw(widget);
 	   }
+}
+
+//---------------------AULA 12--------------------------------
+
+gboolean pari_UpdateImageAreas(gpointer data)
+{
+	   //generate an expose event (draw event) on drawingarea1
+	   GtkWidget *da1 = GTK_WIDGET(gtk_builder_get_object(builderG, "drawingarea1"));
+	   gtk_widget_queue_draw(da1);
+	   return TRUE;
 }
